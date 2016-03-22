@@ -34,9 +34,26 @@ p {
 	margin: 8px 0 0 0;
 }
 
+.container {
+	max-width: 900px;
+	margin: auto;
+}
+
 .container p {
 	text-align: center;
 	padding: 0;
+}
+
+.container div {
+	text-align: center;
+	widtH: 100%;
+	margin: auto;
+}
+
+#linkInput {
+	font-size: 32px;
+	border-radius: 2%;
+	
 }
 
 /****** Header Styling ******/
