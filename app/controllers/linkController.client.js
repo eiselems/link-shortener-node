@@ -10,7 +10,9 @@
    var deleteButton = document.querySelector('.btn-delete');
    var clickNbr = document.querySelector('#click-nbr');
    var apiUrl = appUrl + '/api/';
-
+   
+   var modal = picoModal("Your link was generated <p class='generated' id='generatedLink'></p><button id='copyButton'>Copy to Clipboard</button>");
+   
    function updateClickCount (data) {
       var clicksObject = JSON.parse(data);
       clickNbr.innerHTML = clicksObject.clicks;
@@ -37,6 +39,7 @@
 **/
    
    function copyToClipboard(){
+      var cpBtn = document.querySelector('#copyButton'); 
       var emailLink = document.querySelector('#generatedLink');  
       var range = document.createRange();
       range.selectNode(emailLink);  
@@ -46,7 +49,8 @@
          // Now that we've selected the anchor text, execute the copy command  
          var successful = document.execCommand('copy');  
          var msg = successful ? 'successful' : 'unsuccessful';  
-         console.log('Copy email command was ' + msg);  
+         console.log('Copy email command was ' + msg);
+         cpBtn.innerHTML = "Copied!";
       } catch(err) {  
          console.log('Oops, unable to copy');  
       }  
@@ -66,7 +70,8 @@
          console.log(data);
          var json = JSON.parse(data);
          let generatedLink = apiUrl + json.short
-         picoModal("Your link was generated <p class='generated' id='generatedLink'>"+ generatedLink +"</p><button id='copyButton'>Copy to Clipboard</button>").show();   
+         modal.show();
+         document.querySelector('#generatedLink').innerHTML = generatedLink;
          var cpBtn = document.querySelector('#copyButton'); 
          cpBtn.addEventListener ("click", copyToClipboard, false);
          output.innerHTML = "Last generated link for "+ textField.value +":<br>" + "<span class='generated'>" + generatedLink + "</span>";
