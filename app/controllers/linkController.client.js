@@ -1,7 +1,7 @@
 'use strict';
 
 (function () {
-
+   var form = document.querySelector('form');
    var textField = document.querySelector('#linkInput');
    var getLinkBtn = document.querySelector('#getLinkButton');
    var output = document.querySelector('#output');
@@ -36,14 +36,18 @@
 
 **/
 
-   getLinkBtn.addEventListener('click', function () {
-
-      ajaxFunctions.ajaxRequest('POST', apiUrl+textField.value, function (data) {
+   getLinkInput.addEventListener('click', function (e) {
+      e.preventDefault();
+      console.log(textField.checkValidity());
+      if(!textField.checkValidity()){
+         picoModal("Invalid link - it needs to start with http(s).").show();   
+      }else{
+      ajaxFunctions.ajaxRequest('POST', apiUrl+encodeURIComponent(textField.value), function (data) {
          console.log(data);
          var json = JSON.parse(data);
          output.innerHTML = apiUrl + json.short;
       });
-
+      }
    }, false);
 
 

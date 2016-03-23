@@ -30,7 +30,7 @@ module.exports = function (passport) {
 				if (user) {
 					return done(null, user);
 				} else {
-					var newUser = new User();
+					var newUser = new ShortLink();
 
 					newUser.github.id = profile.id;
 					newUser.github.username = profile.username;

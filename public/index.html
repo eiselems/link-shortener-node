@@ -16,13 +16,28 @@
 	
 		<div class="container">
 			<div>
-				<input id="linkInput" type="url" class="form-control" placeholder="www.google.com">
-				<button id="getLinkButton">GET LINK</button>
+				
+				<form class="form-style-7">
+					<ul>
+						<li>
+						    <label for="link">Link</label>
+						    <input id ="linkInput" placeholder="eg. http(s)://google.com" type="url" name="link" maxlength="100" pattern="https?://.+">
+						    <span>Enter your link here</span>
+						</li>
+						<li>
+    						<input id='getLinkInput' type="submit" value="Generate Link" >
+						</li>
+					</ul>
+				</form>
 				<p id="output"></p>
+				
 			</div>
+			
+			
 		</div>
 		
 		<script type="text/javascript" src="common/ajax-functions.js"></script>
+		<script type="text/javascript" src="common/picoModal.js"></script>
 		<script type="text/javascript" src="controllers/linkController.client.js"></script>
 	</body>
 
