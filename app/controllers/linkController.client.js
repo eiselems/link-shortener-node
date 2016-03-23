@@ -35,6 +35,26 @@
    }, false);
 
 **/
+   
+   function copyToClipboard(){
+      var emailLink = document.querySelector('#generatedLink');  
+      var range = document.createRange();
+      range.selectNode(emailLink);  
+      window.getSelection().addRange(range);  
+      
+      try {  
+         // Now that we've selected the anchor text, execute the copy command  
+         var successful = document.execCommand('copy');  
+         var msg = successful ? 'successful' : 'unsuccessful';  
+         console.log('Copy email command was ' + msg);  
+      } catch(err) {  
+         console.log('Oops, unable to copy');  
+      }  
+
+     // Remove the selections - NOTE: Should use
+     // removeRange(range) when it is supported  
+     window.getSelection().removeAllRanges(); 
+   };
 
    getLinkInput.addEventListener('click', function (e) {
       e.preventDefault();
@@ -46,7 +66,9 @@
          console.log(data);
          var json = JSON.parse(data);
          let generatedLink = apiUrl + json.short
-         picoModal("Your link was generated <p class='generated' id='generatedLink'>"+ generatedLink +"</p>").show();   
+         picoModal("Your link was generated <p class='generated' id='generatedLink'>"+ generatedLink +"</p><button id='copyButton'>Copy to Clipboard</button>").show();   
+         var cpBtn = document.querySelector('#copyButton'); 
+         cpBtn.addEventListener ("click", copyToClipboard, false);
          output.innerHTML = "Last generated link for "+ textField.value +":<br>" + "<span class='generated'>" + generatedLink + "</span>";
       });
       }
