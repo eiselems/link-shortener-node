@@ -15,7 +15,10 @@ function LinkHandler () {
 				if (err) { throw err; }
 				console.log(result);
 				if(result) {
-					res.json(result);	
+					res.writeHead(301,
+						{Location: result.full}
+					);
+					res.end();	
 				}else{
 					res.send("No link with this id");	
 				};
