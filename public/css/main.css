@@ -327,3 +327,7 @@ span {
     color:#fff;
     cursor: pointer !important;
 }
+
+.generated {
+	font-weight: 500;
+}

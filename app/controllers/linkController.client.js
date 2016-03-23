@@ -45,7 +45,9 @@
       ajaxFunctions.ajaxRequest('POST', apiUrl+encodeURIComponent(textField.value), function (data) {
          console.log(data);
          var json = JSON.parse(data);
-         output.innerHTML = apiUrl + json.short;
+         let generatedLink = apiUrl + json.short
+         picoModal("Your link was generated <p class='generated' id='generatedLink'>"+ generatedLink +"</p>").show();   
+         output.innerHTML = "Last generated link for "+ textField.value +":<br>" + "<span class='generated'>" + generatedLink + "</span>";
       });
       }
    }, false);
